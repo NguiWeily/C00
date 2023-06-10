@@ -1,0 +1,82 @@
+Files to turn in : ft_putnbr.c
+Allowed functions : write
+• Create a function that displays the number entered as a parameter. The function
+has to be able to display all possible values within an int type variable.
+• Here’s how it should be prototyped :
+void ft_putnbr(int nb);
+• For example:
+◦ ft_putnbr(42) displays "42".
+
+Based on the given instructions, here's an example implementation of the `ft_putnbr` function in C, using the `write` function to display the number:
+
+```c
+
+#include <unistd.h>
+
+void ft_putchar(char c)
+
+{
+
+    write(1, &c, 1);
+
+}
+
+void ft_putnbr(int nb)
+
+{
+
+    if (nb < 0)
+
+    {
+
+        ft_putchar('-');
+
+        nb = -nb;
+
+    }
+
+    if (nb >= 10)
+
+    {
+
+        ft_putnbr(nb / 10);
+
+        ft_putnbr(nb % 10);
+
+    }
+
+    else
+
+    {
+
+        ft_putchar(nb + '0');
+
+    }
+
+}
+
+int main()
+
+{
+
+    int number;
+
+    // Prompt the user to enter an integer
+
+    printf("Enter an integer: ");
+
+    scanf("%d", &number);
+
+    ft_putnbr(number);
+
+    return 0;
+
+}
+
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_putchar` function is a helper function that writes a single character to the standard output. The `ft_putnbr` function uses recursion to display the number digit by digit. It first checks if the number is negative and handles that by writing a `'-'` character and converting the number to its positive form. Then, it recursively calls itself with the quotient (`nb / 10`) to display the remaining digits and uses the modulo operator (`nb % 10`) to display the last digit. Finally, it uses the `ft_putchar` function to write each digit as a character. The `main` function prompts the user to enter an integer, reads the input using `scanf`, and then calls `ft_putnbr` with the entered number.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the number displayed as characters.
