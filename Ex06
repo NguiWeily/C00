@@ -1,0 +1,109 @@
+Files to turn in : ft_print_comb2.c
+Allowed functions : write
+• Create a function that displays all different combination of two digits between 00
+and 99, listed by ascending order.
+• Here’s the expected output :
+$>./a.out | cat -e
+00 01, 00 02, 00 03, 00 04, 00 05, ..., 00 99, 01 02, ..., 97 99, 98 99$>
+• Here’s how it should be prototyped :
+void ft_print_comb2(void);
+
+Based on the given instructions, here's an example implementation of the `ft_print_comb2` function in C, using the `write` function to display the combinations:
+
+```c
+
+#include <unistd.h>
+
+void ft_print_comb2(void)
+
+{
+
+    char digits[4];
+
+    digits[0] = '0';
+
+    digits[1] = '0';
+
+    digits[2] = '0';
+
+    digits[3] = '1';
+
+    while (digits[0] <= '9')
+
+    {
+
+        while (digits[1] <= '9')
+
+        {
+
+            while (digits[2] <= '9')
+
+            {
+
+                while (digits[3] <= '9')
+
+                {
+
+                    if (digits[0] <= digits[2] && (digits[0] != digits[2] || digits[1] < digits[3]))
+
+                    {
+
+                        write(1, digits, 2);
+
+                        write(1, " ", 1);
+
+                        write(1, digits + 2, 2);
+
+                        if (!(digits[0] == '9' && digits[1] == '8' && digits[2] == '9' && digits[3] == '9'))
+
+                            write(1, ", ", 2);
+
+                    }
+
+                    digits[3]++;
+
+                }
+
+                digits[2]++;
+
+                digits[3] = '0';
+
+            }
+
+            digits[1]++;
+
+            digits[2] = digits[0];
+
+            digits[3] = digits[1] + 1;
+
+        }
+
+        digits[0]++;
+
+        digits[1] = '0';
+
+        digits[2] = digits[0];
+
+        digits[3] = digits[1] + 1;
+
+    }
+
+}
+
+int main()
+
+{
+
+    ft_print_comb2();
+
+    return 0;
+
+}
+
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_print_comb2` function uses nested `while` loops to iterate through all possible combinations of two digits. It checks if the digits are in ascending order and writes them to the standard output using the `write` function. Additionally, a space is written between the two digits, and a comma and a space are written after each combination except for the last one. The `main` function calls `ft_print_comb2` to test it.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the different combinations of two digits displayed in ascending order, with a space between each pair and a comma and a space separating each combination. The last combination is not followed by a comma and a space.
