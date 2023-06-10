@@ -1,0 +1,39 @@
+Files to turn in : ft_print_alphabet.c
+
+Allowed functions : write
+
+• Create a function that displays the alphabet in lowercase, on a single line, by
+
+ascending order, starting from the letter ’a’.
+
+• Here’s how it should be prototyped :
+
+void ft_print_alphabet(void);
+
+Based on your instructions, here's an example implementation of the `ft_print_alphabet` function in C:
+
+```c
+
+#include <unistd.h>
+
+void ft_print_alphabet(void) {
+
+    char c = 'a';
+
+    while (c <= 'z') {
+
+        write(1, &c, 1);
+
+        c++;
+
+    }
+
+    write(1, "\n", 1); // Print a newline character at the end
+
+}
+
+```
+
+In this implementation, the function `ft_print_alphabet` displays the alphabet in lowercase, on a single line, by ascending order, starting from the letter 'a'. It uses a `while` loop to iterate through the characters from 'a' to 'z'. Within the loop, it uses the `write` function to write each character to the standard output (file descriptor 1). After the loop, it writes a newline character (`\n`) to start a new line.
+
+Please note that this implementation assumes you have included the necessary header file `<unistd.h>` for the `write` function.
