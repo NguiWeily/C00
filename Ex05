@@ -1,0 +1,68 @@
+Files to turn in : ft_print_comb.c
+
+Allowed functions : write
+
+• Create a function that displays all different combinations of three different digits in
+
+ascending order, listed by ascending order - yes, repetition is voluntary.
+
+• Here’s the intended output :
+
+$>./a.out | cat -e
+
+012, 013, 014, 015, 016, 017, 018, 019, 023, ..., 789$>
+
+• 987 isn’t there because 789 already is.
+
+• 999 isn’t there because the digit 9 is present more than once.
+
+• Here’s how it should be prototyped :
+
+void ft_print_comb(void);
+
+Based on the given instructions, here's an example implementation of the `ft_print_comb` function in C, using the `write` function to display the combinations:
+
+```c
+#include <unistd.h>
+
+void ft_print_comb(void)
+{
+    char digits[3];
+    digits[0] = '0';
+    digits[1] = '0';
+    digits[2] = '0';
+
+    while (digits[0] <= '9')
+    {
+        while (digits[1] <= '9')
+        {
+            while (digits[2] <= '9')
+            {
+                if (digits[0] < digits[1] && digits[1] < digits[2])
+                {
+                    write(1, digits, 3);
+                    if (digits[0] != '7' || digits[1] != '8' || digits[2] != '9')
+                        write(1, ", ", 2);
+                }
+                digits[2]++;
+            }
+            digits[1]++;
+            digits[2] = '0';
+        }
+        digits[0]++;
+        digits[1] = '0';
+    }
+}
+
+int main()
+{
+    ft_print_comb();
+    return 0;
+}
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_print_comb` function uses nested `while` loops to iterate through all possible combinations of three digits. It checks if the digits are in ascending order and writes them to the standard output using the `write` function. Additionally, a comma and a space are written after each combination except for the last one. The `main` function calls `ft_print_comb` to test it.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the different combinations of three digits displayed in ascending order, with a comma and a space separating each combination. The last combination is not followed by a comma and a space.
