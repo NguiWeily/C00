@@ -1,0 +1,49 @@
+
+Files to turn in : ft_print_numbers.c
+Allowed functions : write
+• Create a function that displays all digits, on a single line, by ascending order.
+• Here’s how it should be prototyped :
+void ft_print_numbers(void);
+
+
+Based on the given instructions, here's an example implementation of the `ft_print_numbers` function in C, using the `write` function to display the digits:
+
+```c
+
+#include <unistd.h>
+
+void ft_print_numbers(void)
+
+{
+
+    char digit = '0';
+
+    while (digit <= '9')
+
+    {
+
+        write(1, &digit, 1);
+
+        digit++;
+
+    }
+
+}
+
+int main()
+
+{
+
+    ft_print_numbers();
+
+    return 0;
+
+}
+
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_print_numbers` function uses a `while` loop to iterate from `'0'` to `'9'` and writes each digit to the standard output using the `write` function. Finally, we call `ft_print_numbers` from the `main` function to test it.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the digits printed on a single line in ascending order.
