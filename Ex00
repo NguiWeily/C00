@@ -1,0 +1,31 @@
+Files to turn in : ft_putchar.c
+
+Allowed functions : write
+
+• Write a function that displays the character passed as a parameter.
+
+• It will be prototyped as follows :
+
+void ft_putchar(char c);
+
+To display the character, you must use the texttt write function as follows.
+
+write(1, &c, 1);
+
+Based on your instructions, here's an example implementation of the `ft_putchar` function in C:
+
+```c
+
+#include <unistd.h>
+
+void ft_putchar(char c) {
+
+    write(1, &c, 1);
+
+}
+
+```
+
+In this implementation, the function `ft_putchar` takes a character `c` as a parameter and uses the `write` function to display the character. The `write` function writes the character to the standard output (file descriptor 1) by passing the address of `c` and specifying a size of 1.
+
+Please note that this implementation assumes you have included the necessary header file `<unistd.h>` for the `write` function.
