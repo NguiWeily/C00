@@ -1,0 +1,113 @@
+Files to turn in : ft_print_combn.c
+
+Allowed functions : write
+
+• Create a function that displays all different combinations of n numbers by ascending
+
+order.
+
+• n will be so that : 0 < n < 10.
+
+• If n = 2, here’s the expected output :
+
+$>./a.out | cat -e
+
+01, 02, 03, ..., 09, 12, ..., 79, 89$>
+
+• Here’s how it should be prototyped :
+
+void ft_print_combn(int n);
+
+Certainly! Here's an example implementation of the `ft_print_combn` function in C, using the `write` function to display the combinations:
+
+```c
+
+#include <unistd.h>
+
+void ft_putchar(char c)
+
+{
+
+    write(1, &c, 1);
+
+}
+
+void print_combn_recursive(int digits[], int n, int current_digit, int start)
+
+{
+
+    if (current_digit == n)
+
+    {
+
+        for (int i = 0; i < n; i++)
+
+            ft_putchar(digits[i] + '0');
+
+        
+
+        if (digits[0] != (10 - n))
+
+        {
+
+            ft_putchar(',');
+
+            ft_putchar(' ');
+
+        }
+
+        return;
+
+    }
+
+    for (int i = start; i <= (10 - n + current_digit); i++)
+
+    {
+
+        digits[current_digit] = i;
+
+        print_combn_recursive(digits, n, current_digit + 1, i + 1);
+
+    }
+
+}
+
+void ft_print_combn(int n)
+
+{
+
+    if (n < 1 || n > 9)
+
+        return;
+
+    int digits[n];
+
+    print_combn_recursive(digits, n, 0, 0);
+
+}
+
+int main()
+
+{
+
+    int n;
+
+    // Prompt the user to enter a value for n
+
+    printf("Enter a value for n (0 < n < 10): ");
+
+    scanf("%d", &n);
+
+    ft_print_combn(n);
+
+    return 0;
+
+}
+
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_putchar` function is a helper function that writes a single character to the standard output. The `print_combn_recursive` function is a recursive helper function that generates and prints the combinations. It takes an array `digits` to store the combination, the value of `n`, the current digit being filled (`current_digit`), and the start value for the loop (`start`). It recursively generates the combinations by iterating through the possible digits and storing them in the `digits` array. When the combination is complete, it prints it using the `ft_putchar` function. The `ft_print_combn` function checks if the given value of `n` is within the valid range (1 to 9) and then initializes the `digits` array and calls the `print_combn_recursive` function to generate and print the combinations. The `main` function prompts the user to enter a value for `n`, reads the input using `scanf`, and then calls `ft_print_combn` with the entered value.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the different combinations of `n` numbers displayed in ascending order, with a comma and a space separating each combination. The last combination is not followed by a comma and a space.
