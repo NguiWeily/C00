@@ -1,0 +1,69 @@
+Files to turn in : ft_is_negative.c
+
+Allowed functions : write
+
+• Create a function that displays ’N’ or ’P’ depending on the integer’s sign entered
+
+as a parameter. If n is negative, display ’N’. If n is positive or null, display ’P’.
+
+• Here’s how it should be prototyped :
+
+void ft_is_negative(int n);
+
+Based on the given instructions, here's an example implementation of the `ft_is_negative` function in C, using the `write` function to display the result:
+
+```c
+
+#include <unistd.h>
+
+void ft_is_negative(int n)
+
+{
+
+    if (n < 0)
+
+    {
+
+        char negative = 'N';
+
+        write(1, &negative, 1);
+
+    }
+
+    else
+
+    {
+
+        char positive = 'P';
+
+        write(1, &positive, 1);
+
+    }
+
+}
+
+int main()
+
+{
+
+    int number;
+
+    // Prompt the user to enter an integer
+
+    printf("Enter an integer: ");
+
+    scanf("%d", &number);
+
+    ft_is_negative(number);
+
+    return 0;
+
+}
+
+```
+
+In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_is_negative` function takes an integer `n` as a parameter and checks if it's less than zero. If `n` is negative, it writes the character `'N'` to the standard output using the `write` function. If `n` is non-negative (positive or zero), it writes the character `'P'` to the standard output. The `main` function prompts the user to enter an integer, reads the input using `scanf`, and then calls `ft_is_negative` with the entered number.
+
+Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+
+You can compile and run this code to see the result displayed as `'N'` for negative numbers and `'P'` for positive or zero numbers.
