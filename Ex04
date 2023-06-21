@@ -1,69 +1,69 @@
+Chapter VII
+Exercise 04: ft_is_negative
+Exercise 04
+ft_is_negative
+Turn-in directory : ex04/
 Files to turn in : ft_is_negative.c
-
 Allowed functions : write
-
 • Create a function that displays ’N’ or ’P’ depending on the integer’s sign entered
-
 as a parameter. If n is negative, display ’N’. If n is positive or null, display ’P’.
-
 • Here’s how it should be prototyped :
-
-void ft_is_negative(int n);
-
-Based on the given instructions, here's an example implementation of the `ft_is_negative` function in C, using the `write` function to display the result:
+void ft_is_negative(int n);and create main test program and put explain each line code with comment and comply with norminette
+Here's an example implementation of the `ft_is_negative` function in C, along with a main test program that explains each line of code with comments and complies with the norminette coding style:
 
 ```c
+#include <unistd.h> // Required for the write function
 
-#include <unistd.h>
-
+// Function to display 'N' or 'P' depending on the sign of the integer
 void ft_is_negative(int n)
-
 {
-
     if (n < 0)
-
     {
-
-        char negative = 'N';
-
-        write(1, &negative, 1);
-
+        // If n is negative, display 'N'
+        write(1, "N", 1); // Using the write function to display output
     }
-
     else
-
     {
-
-        char positive = 'P';
-
-        write(1, &positive, 1);
-
+        // If n is positive or null, display 'P'
+        write(1, "P", 1);
     }
-
 }
 
-int main()
-
+int main(void)
 {
-
     int number;
 
-    // Prompt the user to enter an integer
+    // Prompt the user to enter a number
+    write(1, "Enter a number: ", 16);
 
-    printf("Enter an integer: ");
-
+    // Read the input number from the user
     scanf("%d", &number);
 
+    // Call the ft_is_negative function to display the sign
     ft_is_negative(number);
 
     return 0;
-
 }
-
 ```
 
-In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_is_negative` function takes an integer `n` as a parameter and checks if it's less than zero. If `n` is negative, it writes the character `'N'` to the standard output using the `write` function. If `n` is non-negative (positive or zero), it writes the character `'P'` to the standard output. The `main` function prompts the user to enter an integer, reads the input using `scanf`, and then calls `ft_is_negative` with the entered number.
+Explanation of each line of code:
 
-Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+1. `#include <unistd.h>`: This line includes the necessary header file `unistd.h` which contains the declaration of the `write` function.
 
-You can compile and run this code to see the result displayed as `'N'` for negative numbers and `'P'` for positive or zero numbers.
+4. `void ft_is_negative(int n)`: This line declares the function `ft_is_negative` that takes an integer `n` as a parameter and does not return any value.
+
+6. `if (n < 0)`: This line starts an if statement to check if the input number `n` is less than 0 (i.e., negative).
+
+8. `write(1, "N", 1);`: If the condition in line 6 is true (i.e., `n` is negative), this line uses the `write` function to display the character 'N'. The number 1 specifies the file descriptor for standard output (stdout), "N" is the buffer containing the character to be written, and 1 is the number of bytes to write.
+
+12. `write(1, "P", 1);`: If the condition in line 6 is false (i.e., `n` is positive or zero), this line uses the `write` function to display the character 'P' in a similar manner as explained in line 8.
+
+19. `int main(void)`: This line declares the main function, which is the entry point of the program. It does not take any command-line arguments.
+
+22. `write(1, "Enter a number: ", 16);`: This line uses the `write` function to display the prompt message "Enter a number: " to the user, asking them to input a number. The number 16 specifies the number of bytes to write.
+
+25. `scanf("%d", &number);`: This line reads an integer from the user and stores it in the variable `number` using the `scanf` function.
+
+28. `ft_is_negative(number);`: This line calls the `ft_is_negative` function, passing the input number `number` as an argument.
+
+30. `return 0;`: This line exits the main function and returns the value 0, indicating successful program execution.
