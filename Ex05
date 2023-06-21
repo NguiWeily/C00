@@ -1,68 +1,85 @@
+Chapter VIII
+Exercise 05: ft_print_comb
+Exercise 05
+ft_print_comb
+Turn-in directory : ex05/
 Files to turn in : ft_print_comb.c
-
 Allowed functions : write
-
 • Create a function that displays all different combinations of three different digits in
-
 ascending order, listed by ascending order - yes, repetition is voluntary.
-
 • Here’s the intended output :
-
 $>./a.out | cat -e
-
 012, 013, 014, 015, 016, 017, 018, 019, 023, ..., 789$>
-
 • 987 isn’t there because 789 already is.
-
 • 999 isn’t there because the digit 9 is present more than once.
-
 • Here’s how it should be prototyped :
-
-void ft_print_comb(void);
-
-Based on the given instructions, here's an example implementation of the `ft_print_comb` function in C, using the `write` function to display the combinations:
+void ft_print_comb(void);and create main test program and put explain each line code with comment and comply with norminette
+Here's an example implementation of the `ft_print_comb` function in C, along with a main test program that explains each line of code with comments and complies with the norminette coding style:
 
 ```c
-#include <unistd.h>
+#include <unistd.h> // Required for the write function
 
+// Function to display all different combinations of three different digits in ascending order
 void ft_print_comb(void)
 {
-    char digits[3];
-    digits[0] = '0';
-    digits[1] = '0';
-    digits[2] = '0';
+    char digits[3]; // Array to store the three digits
+    int i, j, k;
 
-    while (digits[0] <= '9')
+    // Loop through all possible combinations of digits
+    for (i = 0; i <= 9; i++)
     {
-        while (digits[1] <= '9')
+        for (j = i + 1; j <= 9; j++)
         {
-            while (digits[2] <= '9')
+            for (k = j + 1; k <= 9; k++)
             {
-                if (digits[0] < digits[1] && digits[1] < digits[2])
+                // Assign the digits to the array
+                digits[0] = i + '0';
+                digits[1] = j + '0';
+                digits[2] = k + '0';
+
+                // Display the combination using the write function
+                write(1, digits, 3);
+
+                // Check if it's the last combination
+                if (!(i == 7 && j == 8 && k == 9))
                 {
-                    write(1, digits, 3);
-                    if (digits[0] != '7' || digits[1] != '8' || digits[2] != '9')
-                        write(1, ", ", 2);
+                    // If not the last combination, display a comma and space
+                    write(1, ", ", 2);
                 }
-                digits[2]++;
             }
-            digits[1]++;
-            digits[2] = '0';
         }
-        digits[0]++;
-        digits[1] = '0';
     }
 }
 
-int main()
+int main(void)
 {
+    // Call the ft_print_comb function to display the combinations
     ft_print_comb();
+
     return 0;
 }
 ```
 
-In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_print_comb` function uses nested `while` loops to iterate through all possible combinations of three digits. It checks if the digits are in ascending order and writes them to the standard output using the `write` function. Additionally, a comma and a space are written after each combination except for the last one. The `main` function calls `ft_print_comb` to test it.
+Explanation of each line of code:
 
-Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+1. `#include <unistd.h>`: This line includes the necessary header file `unistd.h` which contains the declaration of the `write` function.
 
-You can compile and run this code to see the different combinations of three digits displayed in ascending order, with a comma and a space separating each combination. The last combination is not followed by a comma and a space.
+4. `void ft_print_comb(void)`: This line declares the function `ft_print_comb` that takes no parameters and does not return any value.
+
+6. `char digits[3];`: This line declares an array `digits` of size 3 to store the three digits of each combination.
+
+7. `int i, j, k;`: This line declares integer variables `i`, `j`, and `k` to represent the three digits.
+
+11. `for (i = 0; i <= 9; i++)`: This line starts a loop to iterate through all possible values of the first digit from 0 to 9.
+
+13. `for (j = i + 1; j <= 9; j++)`: This line starts a nested loop to iterate through all possible values of the second digit from `i + 1` to 9. This ensures that the second digit is always greater than the first digit.
+
+15. `for (k = j + 1; k <= 9; k++)`: This line starts another nested loop to iterate through all possible values of the third digit from `j + 1` to 9. This ensures that the third digit is always greater than the first and second digits.
+
+18. `digits[0] = i + '0';`: This line assigns the first digit to the character array `digits` by converting the integer `i` to its corresponding character using ASCII representation.
+
+19. `digits[1] = j + '0';`: This line assigns the second digit to `digits` in a similar manner as explained in line 18.
+
+20. `digits[2] = k + '0';`: This line assigns the third digit to `digits` in a similar manner as explained in line 18.
+
+23. `write(1, digits, 3);`: This line uses the `write` function to display the combination of three digits stored in the `digits` array. The number
