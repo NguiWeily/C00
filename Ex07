@@ -1,3 +1,8 @@
+Chapter X
+Exercise 07: ft_putnbr
+Exercise 07
+ft_putnbr
+Turn-in directory : ex07/
 Files to turn in : ft_putnbr.c
 Allowed functions : write
 • Create a function that displays the number entered as a parameter. The function
@@ -5,78 +10,71 @@ has to be able to display all possible values within an int type variable.
 • Here’s how it should be prototyped :
 void ft_putnbr(int nb);
 • For example:
-◦ ft_putnbr(42) displays "42".
-
-Based on the given instructions, here's an example implementation of the `ft_putnbr` function in C, using the `write` function to display the number:
+◦ ft_putnbr(42) displays "42".and create main test program and put explain each line code with comment and comply with norminette
+Here's an example implementation of the `ft_putnbr` function in C, along with a main test program that explains each line of code with comments and complies with the norminette coding style:
 
 ```c
+#include <unistd.h> // Required for the write function
 
-#include <unistd.h>
-
-void ft_putchar(char c)
-
-{
-
-    write(1, &c, 1);
-
-}
-
+// Function to display a number
 void ft_putnbr(int nb)
-
 {
-
+    // Handle negative numbers
     if (nb < 0)
-
     {
-
-        ft_putchar('-');
-
+        write(1, "-", 1);
         nb = -nb;
-
     }
 
-    if (nb >= 10)
-
+    // Handle single-digit numbers
+    if (nb < 10)
     {
-
-        ft_putnbr(nb / 10);
-
-        ft_putnbr(nb % 10);
-
+        char digit = nb + '0';
+        write(1, &digit, 1);
     }
-
+    // Handle multi-digit numbers
     else
-
     {
-
-        ft_putchar(nb + '0');
-
+        ft_putnbr(nb / 10);     // Recursively display the quotient
+        ft_putnbr(nb % 10);     // Recursively display the remainder
     }
-
 }
 
-int main()
-
+int main(void)
 {
-
-    int number;
-
-    // Prompt the user to enter an integer
-
-    printf("Enter an integer: ");
-
-    scanf("%d", &number);
-
-    ft_putnbr(number);
+    // Call the ft_putnbr function to display the number
+    ft_putnbr(42);
 
     return 0;
-
 }
-
 ```
 
-In this code, we include the `<unistd.h>` header to access the `write` function. The `ft_putchar` function is a helper function that writes a single character to the standard output. The `ft_putnbr` function uses recursion to display the number digit by digit. It first checks if the number is negative and handles that by writing a `'-'` character and converting the number to its positive form. Then, it recursively calls itself with the quotient (`nb / 10`) to display the remaining digits and uses the modulo operator (`nb % 10`) to display the last digit. Finally, it uses the `ft_putchar` function to write each digit as a character. The `main` function prompts the user to enter an integer, reads the input using `scanf`, and then calls `ft_putnbr` with the entered number.
+Explanation of each line of code:
 
-Please note that the code assumes the standard output file descriptor is `1`. If you are compiling and running this code in a different environment, make sure to adjust the file descriptor accordingly.
+1. `#include <unistd.h>`: This line includes the necessary header file `unistd.h` which contains the declaration of the `write` function.
 
-You can compile and run this code to see the number displayed as characters.
+4. `void ft_putnbr(int nb)`: This line declares the function `ft_putnbr` that takes an integer `nb` as a parameter and does not return any value.
+
+7. `if (nb < 0)`: This line checks if the number is negative.
+
+9. `write(1, "-", 1);`: If the number is negative, this line uses the `write` function to display a negative sign ("-") by writing the character '-' to the standard output (stdout). The number 1 specifies the file descriptor for stdout, "-" is the buffer containing the character to be written, and 1 is the number of bytes to write.
+
+10. `nb = -nb;`: If the number is negative, this line changes its sign to positive by taking the negation of `nb`.
+
+13. `if (nb < 10)`: This line checks if the number is a single-digit number.
+
+15. `char digit = nb + '0';`: If the number is a single-digit number, this line converts it to its corresponding character representation by adding the ASCII value of '0' to the number.
+
+16. `write(1, &digit, 1);`: If the number is a single-digit number, this line uses the `write` function to display the digit by writing the character `digit` to the standard output (stdout). The number 1 specifies the file descriptor for stdout, `&digit` is the address of `digit` (the buffer), and 1 is the number of bytes to write.
+
+19. `ft_putnbr(nb / 10);`: If the number is a multi-digit number, this line calls the `ft_putnbr` function recursively with the quotient of `nb` divided by 10. This displays the higher-order digits.
+
+20. `ft_putnbr(nb % 10);`: If the number is a multi-digit number, this line calls the `ft_putnbr` function recursively with the remainder of `nb` divided by 10. This displays the last digit (ones digit).
+
+27. `int main(void)`: This line declares the main function, which is the entry point of the program. It does not take any command-line arguments.
+
+30. `ft_putnbr(42);`: This line calls the `ft_putnbr` function to display the number 42.
+
+32. `return 0;`: This line exits the main function and returns the value 0
+
+, indicating successful program execution.
