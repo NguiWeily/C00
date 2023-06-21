@@ -11,7 +11,7 @@ Allowed functions : write
 $>./a.out | cat -e
 00 01, 00 02, 00 03, 00 04, 00 05, ..., 00 99, 01 02, ..., 97 99, 98 99$>
 • Here’s how it should be prototyped :
-void ft_print_comb2(void);
+void ft_print_comb2(void);and create main test program and put explain each line code with comment and comply with norminette
 Here's an example implementation of the `ft_print_comb2` function in C, along with a main test program that explains each line of code with comments and complies with the norminette coding style:
 
 ```c
@@ -83,3 +83,21 @@ Explanation of each line of code:
 22. `if (!(i == 98 && j == 99))`: This line checks if the current combination is not the last one (i.e., 98 99). It uses a logical negation `!` to reverse the condition. If it's not the last combination, the code inside the if statement is executed.
 
 24. `write(1, ", ", 2);`: If the condition in line 22 is true (i.e., not the last combination), this line uses the `write` function to display a comma and a space after
+
+ each combination.
+
+28. `void print_number(int num)`: This line declares the `print_number` function that takes an integer `num` as a parameter and does not return any value.
+
+30. `char digit1 = num / 10 + '0';`: This line calculates the tens digit of the input number `num` by dividing it by 10 and adding the ASCII value of '0'. This converts the tens digit to its corresponding character representation.
+
+31. `char digit2 = num % 10 + '0';`: This line calculates the ones digit of the input number `num` by taking the remainder after dividing it by 10 and adding the ASCII value of '0'. This converts the ones digit to its corresponding character representation.
+
+34. `write(1, &digit1, 1);`: This line uses the `write` function to display the tens digit of the number by writing the character `digit1`. The address of `digit1` is passed to `write` as the buffer, and 1 is the number of bytes to write.
+
+35. `write(1, &digit2, 1);`: This line uses the `write` function to display the ones digit of the number by writing the character `digit2`. The address of `digit2` is passed to `write` as the buffer, and 1 is the number of bytes to write.
+
+40. `int main(void)`: This line declares the main function, which is the entry point of the program. It does not take any command-line arguments.
+
+43. `ft_print_comb2();`: This line calls the `ft_print_comb2` function to display all the combinations of two different two-digit numbers in ascending order.
+
+45. `return 0;`: This line exits the main function and returns the value 0, indicating successful program execution.
