@@ -1,39 +1,30 @@
+Chapter IV
+Exercise 01: ft_print_alphabet
+Exercise 01
+ft_print_alphabet
+Turn-in directory : ex01/
 Files to turn in : ft_print_alphabet.c
-
 Allowed functions : write
-
 • Create a function that displays the alphabet in lowercase, on a single line, by
-
 ascending order, starting from the letter ’a’.
-
 • Here’s how it should be prototyped :
+void ft_print_alphabet(void); and create main test program and put explain each line code with comment and comply with norminette
+Below is an example implementation of the `ft_print_alphabet` function in C, complying with the norminette and providing comments to explain each line of code:
 
-void ft_print_alphabet(void);
+#include <unistd.h> // Include the necessary header file for the write function
 
-Based on your instructions, here's an example implementation of the `ft_print_alphabet` function in C:
-
-```c
-
-#include <unistd.h>
-
-void ft_print_alphabet(void) {
-
-    char c = 'a';
-
-    while (c <= 'z') {
-
-        write(1, &c, 1);
-
-        c++;
-
+void ft_print_alphabet(void) // Define the ft_print_alphabet function with no parameters
+{
+    char c = 'a'; // Declare a character variable and initialize it with the value 'a'
+    while (c <= 'z') // Use a while loop to iterate from 'a' to 'z'
+    {
+        write(1, &c, 1); // Display the current character using the write function
+        c++; // Increment the character by 1 to move to the next character
     }
-
-    write(1, "\n", 1); // Print a newline character at the end
-
 }
 
-```
-
-In this implementation, the function `ft_print_alphabet` displays the alphabet in lowercase, on a single line, by ascending order, starting from the letter 'a'. It uses a `while` loop to iterate through the characters from 'a' to 'z'. Within the loop, it uses the `write` function to write each character to the standard output (file descriptor 1). After the loop, it writes a newline character (`\n`) to start a new line.
-
-Please note that this implementation assumes you have included the necessary header file `<unistd.h>` for the `write` function.
+int main(void)
+{
+    ft_print_alphabet(); // Call the ft_print_alphabet function to display the alphabet
+    return 0; // Return 0 to indicate successful execution of the program
+}
