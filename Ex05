@@ -17,35 +17,34 @@ void ft_print_comb(void);and create main test program and put explain each line 
 Here's an example implementation of the `ft_print_comb` function in C, along with a main test program that explains each line of code with comments and complies with the norminette coding style:
 
 ```c
-#include <unistd.h> // Required for the write function
+#include <unistd.h>
 
-// Function to display all different combinations of three different digits in ascending order
+void ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
 void ft_print_comb(void)
 {
-    char digits[3]; // Array to store the three digits
-    int i, j, k;
+    int i;
+    int j;
+    int k;
 
-    // Loop through all possible combinations of digits
-    for (i = 0; i <= 9; i++)
+    i = -1;
+    while (++i <= 7)
     {
-        for (j = i + 1; j <= 9; j++)
+        j = i;
+        while (++j <= 8)
         {
-            for (k = j + 1; k <= 9; k++)
+            k = j;
+            while (++k <= 9)
             {
-                // Assign the digits to the array
-                digits[0] = i + '0';
-                digits[1] = j + '0';
-                digits[2] = k + '0';
+                ft_putchar(i + '0');
+                ft_putchar(j + '0');
+                ft_putchar(k + '0');
 
-                // Display the combination using the write function
-                write(1, digits, 3);
-
-                // Check if it's the last combination
                 if (!(i == 7 && j == 8 && k == 9))
-                {
-                    // If not the last combination, display a comma and space
                     write(1, ", ", 2);
-                }
             }
         }
     }
@@ -53,9 +52,7 @@ void ft_print_comb(void)
 
 int main(void)
 {
-    // Call the ft_print_comb function to display the combinations
     ft_print_comb();
-
     return 0;
 }
 ```
