@@ -11,7 +11,7 @@ Allowed functions : write
 $>./a.out | cat -e
 00 01, 00 02, 00 03, 00 04, 00 05, ..., 00 99, 01 02, ..., 97 99, 98 99$>
 • Here’s how it should be prototyped :
-void ft_print_comb2(void);and create main test program and put explain each line code with comment and comply with norminette
+void ft_print_comb2(void);and create main test program and comply with norminette and function not more than 25 lines.
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -20,46 +20,45 @@ void ft_print_comb2(void);and create main test program and put explain each line
 /*   By: wngui <wngui@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:48:38 by wngui             #+#    #+#             */
-/*   Updated: 2023/06/21 17:06:12 by wngui            ###   ########.fr       */
+/*   Updated: 2023/06/21 18:06:41 by wngui            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-void ft_print_comb2(void){
-    char digits[4];
-    digits[0] = '0';
-    digits[1] = '0';
-    digits[2] = '0';
-    digits[3] = '1';
-    while (digits[0] <= '9'){
-        while (digits[1] <= '9'){
-            while (digits[2] <= '9'){
-                while (digits[3] <= '9'){
-                    if (digits[0] <= digits[2] && (digits[0] != digits[2] || digits[1] < digits[3])){
-                        write(1, digits, 2);
-                        write(1, " ", 1);
-                        write(1, digits + 2, 2);
-                        if (!(digits[0] == '9' && digits[1] == '8' && digits[2] == '9' && digits[3] == '9'))
-                            write(1, ", ", 2);
-                    }
-                    digits[3]++;
-                }
-                digits[2]++;
-                digits[3] = '0';
-            }
-            digits[1]++;
-            digits[2] = digits[0];
-            digits[3] = digits[1] + 1;
-        }
-        digits[0]++;
-        digits[1] = '0';
-        digits[2] = digits[0];
-        digits[3] = digits[1] + 1;
-    }
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_print_comb2(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= 98)
+	{
+		j = i + 1;
+		while (j <= 99)
+		{
+			ft_putchar(i / 10 + '0');
+			ft_putchar(i % 10 + '0');
+			ft_putchar(' ');
+			ft_putchar(j / 10 + '0');
+			ft_putchar(j % 10 + '0');
+			if (i != 98 || j != 99)
+			{
+				ft_putchar(',');
+				ft_putchar(' ');
+			}
+			j++;
+		}
+		i++;
+	}
 }
 /*
-int main()
+int main(void)
 {
     ft_print_comb2();
     return 0;
-}
-*/
+}*/
