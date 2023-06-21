@@ -83,3 +83,15 @@ Explanation of each line of code:
 20. `digits[2] = k + '0';`: This line assigns the third digit to `digits` in a similar manner as explained in line 18.
 
 23. `write(1, digits, 3);`: This line uses the `write` function to display the combination of three digits stored in the `digits` array. The number
+
+ 1 specifies the file descriptor for standard output (stdout), `digits` is the buffer containing the characters to be written, and 3 is the number of bytes to write.
+
+27. `if (!(i == 7 && j == 8 && k == 9))`: This line checks if the current combination is not the last one (i.e., 789). It uses a logical negation `!` to reverse the condition. If it's not the last combination, the code inside the if statement is executed.
+
+29. `write(1, ", ", 2);`: If the condition in line 27 is true (i.e., not the last combination), this line uses the `write` function to display a comma and a space after each combination.
+
+35. `int main(void)`: This line declares the main function, which is the entry point of the program. It does not take any command-line arguments.
+
+38. `ft_print_comb();`: This line calls the `ft_print_comb` function to display all the combinations of three different digits in ascending order.
+
+40. `return 0;`: This line exits the main function and returns the value 0, indicating successful program execution.
