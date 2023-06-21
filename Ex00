@@ -9,8 +9,6 @@ void ft_putchar(char c);
 To display the character, you must use the write function as follows.
 write(1, &c, 1); and create main test program and put explain each line code with comment and comply with norminette
 Here's an example implementation of the `ft_putchar` function in C, complying with the norminette and providing comments to explain each line of code:
-
-```c
 #include <unistd.h> // Include the necessary header file for the write function
 
 void ft_putchar(char c) // Define the ft_putchar function that takes a character as a parameter
@@ -21,27 +19,6 @@ void ft_putchar(char c) // Define the ft_putchar function that takes a character
 int main(void)
 {
     char c = 'A'; // Declare a character variable and assign a value to it
-
     ft_putchar(c); // Call the ft_putchar function to display the character
-
     return 0; // Return 0 to indicate successful execution of the program
 }
-```
-
-Explanation of each line of code:
-
-1. `#include <unistd.h>`: This line includes the necessary header file `unistd.h`, which contains the function prototype for the `write` function.
-
-3. `void ft_putchar(char c)`: This line defines the `ft_putchar` function that takes a character (`char`) as a parameter. The function has a void return type, indicating that it doesn't return a value.
-
-5. `write(1, &c, 1)`: This line uses the `write` function to display the character. The number `1` specifies the file descriptor for the standard output. The `&c` passes the address of the character `c` to the function, and `1` indicates that we want to write a single character.
-
-9. `int main(void)`: This line defines the `main` function, which is the entry point of the program. It has an `int` return type, indicating that it should return an integer value.
-
-11. `char c = 'A'`: This line declares a character variable named `c` and initializes it with the value `'A'`.
-
-13. `ft_putchar(c)`: This line calls the `ft_putchar` function, passing the character `c` as an argument. This will display the character `'A'` on the standard output.
-
-15. `return 0`: This line returns `0` from the `main` function, indicating successful execution of the program.
-
-Please note that the `ft_putchar` function in this example only displays a single character. If you need to display a string or multiple characters, you would need to modify the function accordingly.
